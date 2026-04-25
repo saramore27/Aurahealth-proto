@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraHealth | Master Your Wellbeing</title>
+    <meta name="description"
+        content="A comprehensive health platform with fitness tracking, ayurvedic solutions, yoga guidance, AI chatbot support, and personalized Dosha analysis.">
+
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AuraHealth — Holistic Wellbeing, Reimagined">
+    <meta property="og:description"
+        content="Track fitness, explore ancient ayurvedic wisdom, practice yoga, and get instant symptom insights from your personal AI health assistant.">
+    <meta property="og:url" content="https://aurahealth.app">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AuraHealth — Holistic Wellbeing, Reimagined">
+    <meta name="twitter:description"
+        content="AI-powered health platform with fitness tracking, Ayurvedic remedies, and yoga guidance.">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6d28d9">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%236d28d9' rx='20' width='100' height='100'/><text x='50' y='68' text-anchor='middle' font-size='50' fill='white'>🍃</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css">
+
+    <!-- JSON-LD SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AuraHealth",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "description": "A comprehensive health platform with fitness tracking, ayurvedic solutions, yoga guidance, AI chatbot support, and personalized Dosha analysis.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip to Content (Accessibility) -->
+    <a href="#app" class="skip-link" aria-label="Skip to main content">Skip to content</a>
+
+    <!-- Splash Loader -->
+    <div id="splash-loader" class="splash-loader" role="status" aria-label="Loading application">
+        <div class="splash-content">
+            <img src="logo.jpeg" alt="AuraHealth Logo"
+                style="width: 80px; height: 80px; border-radius: 20px; object-fit: cover; margin-bottom: 1rem;">
+            <h2 class="splash-title">AuraHealth</h2>
+            <div class="splash-bar">
+                <div class="splash-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#/" class="nav-brand" aria-label="AuraHealth Home">
+            <img src="logo.jpeg" alt="AuraHealth Logo"
+                style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+            <span class="brand-text">AuraHealth</span>
+        </a>
+        <div class="nav-links" role="menubar">
+            <a href="#/" role="menuitem" data-route="/" data-i18n="nav_home">Dashboard</a>
+            <a href="#/ayurveda" role="menuitem" data-route="/ayurveda" data-i18n="nav_ayurveda">Ayurveda</a>
+            <a href="#/yoga" role="menuitem" data-route="/yoga" data-i18n="nav_yoga">Yoga & Mudra</a>
+            <a href="#/exercise" role="menuitem" data-route="/exercise" data-i18n="nav_fitness">Exercise</a>
+            <a href="#/quiz" role="menuitem" data-route="/quiz">Dosha Quiz</a>
+            <a href="#/community" role="menuitem" data-route="/community" data-i18n="nav_community">Community</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Language Selector -->
+            <div class="lang-selector" id="lang-selector">
+                <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select language"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                    <span id="current-lang">🇬🇧 English</span>
+                    <i class="fa-solid fa-chevron-down lang-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Available languages"></div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Theme"
+                aria-label="Toggle theme">
+                <i class="fa-solid fa-sun" id="theme-icon" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-outline" onclick="openProfile()" aria-label="Open profile"><i
+                    class="fa-regular fa-user" aria-hidden="true"></i> <span data-i18n="nav_profile">Profile</span></button>
+            <button class="btn btn-primary btn-glow" id="connect-watch-btn" onclick="connectWatch()"
+                aria-label="Connect smartwatch"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> Connect
+                Watch</button>
+        </div>
+        <!-- Mobile hamburger -->
+        <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Toggle navigation menu"
+            aria-expanded="false">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+    </nav>
+
+    <!-- Main App Container (SPA renders here) -->
+    <main id="app" class="container" role="main" aria-live="polite" tabindex="-1"></main>
+
+    <!-- Footer -->
+    <footer class="footer p-5" role="contentinfo">
+        <div class="container text-center">
+            <img src="logo.jpeg" alt="AuraHealth Logo"
+                style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover; margin-bottom: 0.5rem;">
+            <h3 class="mb-3">AuraHealth</h3>
+            <p class="text-muted mb-4">Empowering your natural wellbeing through AI, Yoga, and Ayurveda.</p>
+            <div class="footer-links" role="navigation" aria-label="Footer links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Experts</a>
+            </div>
+            <p class="mt-4 text-muted small">&copy; 2026 AuraHealth. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="chatbot-widget collapsed" role="complementary" aria-label="AI Health Assistant">
+        <div class="chatbot-header gradient-bg-2" onclick="toggleChatbot()" role="button" tabindex="0"
+            aria-label="Toggle chatbot">
+            <div class="chatbot-title">
+                <i class="fa-solid fa-robot" aria-hidden="true"></i> <span data-i18n="chat_title">Aura AI Assist</span>
+            </div>
+            <button class="chatbot-toggle" aria-label="Expand chatbot"><i class="fa-solid fa-chevron-up"
+                    id="chatbot-icon" aria-hidden="true"></i></button>
+        </div>
+        <div class="chatbot-body" id="chatbot-messages" aria-live="polite">
+            <div class="message ai-message">
+                Hello! I am Aura AI. I can navigate the app, offer symptom-based health insights (e.g., diabetes risk
+                evaluation), or recommend YouTube videos. How can I assist you today?
+            </div>
+        </div>
+        <div class="chatbot-input p-3 border-top-glass">
+            <div class="input-wrapper">
+                <input type="text" id="chat-input" placeholder="Ask about symptoms, yoga..." autocomplete="off"
+                    aria-label="Chat message input" data-i18n-placeholder="chat_placeholder">
+                <button class="btn-send" onclick="sendMessage()" aria-label="Send message"><i
+                        class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal Overlay -->
+    <div id="profile-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+        <div class="modal-content glass-card p-5">
+            <button class="close-btn" onclick="closeProfile()" aria-label="Close profile modal"><i
+                    class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <h2 class="mb-4" id="profile-modal-title">Digital Medical History</h2>
+            <p class="text-muted mb-4">Securely store your medical data to personalize AI insights and recommendations.
+            </p>
+            <form class="profile-form" onsubmit="saveProfile(event);">
+                <div class="form-group mb-3">
+                    <label for="input-name">Full Name</label>
+                    <input type="text" id="input-name" class="form-control glass-input" value="John Doe" required>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group w-50 pe-2">
+                        <label for="input-age">Age</label>
+                        <input type="number" id="input-age" class="form-control glass-input" value="32" required>
+                    </div>
+                    <div class="form-group w-50 ps-2">
+                        <label for="input-blood">Blood Type</label>
+                        <select id="input-blood" class="form-control glass-input">
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option selected>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="form-group w-50 pe-2">
+                        <label for="input-height">Height (cm)</label>
+                        <input type="number" id="input-height" class="form-control glass-input" value="175" required>
+                    </div>
+                    <div class="form-group w-50 ps-2">
+                        <label for="input-weight">Weight (kg)</label>
+                        <input type="number" id="input-weight" class="form-control glass-input" value="70" required>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="input-conditions">Known Conditions / Allergies</label>
+                    <input type="text" id="input-conditions" class="form-control glass-input" value="Asthma">
+                </div>
+                <button type="submit" class="btn btn-primary btn-glow w-100 py-3">Save Medical Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast" role="alert" aria-live="assertive"></div>
+
+    <!-- Firebase SDK (Compat version for Vanilla JS) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="firebase-init.js"></script>
+    <script src="translations.js"></script>
+    <script src="pages.js"></script>
+    <script src="router.js"></script>
+    <script src="charts.js"></script>
+    <script src="bluetooth.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            let auraRefreshing = false;
+            let updatePromptShown = false;
+
+            function showUpdatePrompt(registration) {
+                if (updatePromptShown) return;
+                updatePromptShown = true;
+
+                const oldPrompt = document.getElementById('aura-update-prompt');
+                if (oldPrompt) oldPrompt.remove();
+
+                const prompt = document.createElement('div');
+                prompt.id = 'aura-update-prompt';
+                prompt.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;background:rgba(17,24,39,0.95);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;backdrop-filter:blur(8px);';
+                prompt.innerHTML = '<span style="font-size:14px;line-height:1.4;">New update available</span><div style="display:flex;gap:8px;"><button id="aura-update-later" style="border:1px solid rgba(255,255,255,0.3);background:transparent;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer;">Later</button><button id="aura-update-now" style="border:none;background:#06b6d4;color:#06202a;border-radius:8px;padding:6px 10px;font-weight:600;cursor:pointer;">Update</button></div>';
+
+                document.body.appendChild(prompt);
+
+                const closePrompt = () => {
+                    updatePromptShown = false;
+                    prompt.remove();
+                };
+
+                document.getElementById('aura-update-later').addEventListener('click', closePrompt);
+                document.getElementById('aura-update-now').addEventListener('click', () => {
+                    if (registration.waiting) {
+                        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    }
+                    closePrompt();
+                });
+            }
+
+            navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                    if (registration.waiting) {
+                        showUpdatePrompt(registration);
+                    }
+
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        if (!newWorker) return;
+
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                showUpdatePrompt(registration);
+                            }
+                        });
+                    });
+
+                    // Check for updates when the tab regains focus.
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.visibilityState === 'visible') {
+                            registration.update().catch(() => { });
+                        }
+                    });
+                })
+                .catch(() => { });
+
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (auraRefreshing) return;
+                auraRefreshing = true;
+                window.location.reload();
+            });
+        }
+    </script>
+</body>
+
+</html>
