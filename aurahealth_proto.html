@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: 
+            background-image:
                 radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(192, 132, 252, 0.15) 0px, transparent 50%);
             color: var(--text-main);
@@ -61,12 +62,13 @@
         .logo {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .logo img {
+            -webkit-text-fill-color: initial;
         }
 
         .nav-links {
@@ -122,8 +124,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Dashboard specific */
@@ -412,7 +421,8 @@
             font-size: 1.1rem;
         }
 
-        .routine-item p, .routine-item ul {
+        .routine-item p,
+        .routine-item ul {
             color: var(--text-muted);
             line-height: 1.6;
         }
@@ -429,16 +439,16 @@
         .eat-list {
             color: #4ade80 !important;
         }
-        
+
         .avoid-list {
             color: #f87171 !important;
         }
-        
+
         .routine-content-view {
             display: none;
             animation: fadeIn 0.4s ease;
         }
-        
+
         .routine-content-view.active {
             display: block;
         }
@@ -448,27 +458,167 @@
             text-align: center;
             padding: 3rem;
         }
+
         .result-view h2 {
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 1rem;
         }
+
         .result-view p {
             font-size: 1.2rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
 
+        /* Responsive Layout Updates */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 220px;
+                padding: 1.5rem;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+                padding-bottom: 80px;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 80px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 0 1rem;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                z-index: 1000;
+                border-radius: 20px 20px 0 0;
+                border-bottom: none;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .nav-links {
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                gap: 0;
+            }
+
+            .nav-btn {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+                flex-direction: column;
+                gap: 0.3rem;
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0;
+            }
+
+            .nav-btn i {
+                font-size: 1.2rem;
+            }
+
+            .nav-btn.active {
+                color: var(--primary);
+                background: transparent !important;
+                border: none !important;
+                transform: translateY(-3px);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .mobile-top-header {
+                display: flex;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                background: var(--glass-bg);
+                backdrop-filter: blur(12px);
+                position: sticky;
+                top: 0;
+                z-index: 999;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .mobile-top-header .logo {
+                display: flex;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+                margin-top: 2vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .routine-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .routine-card[style] {
+                grid-column: span 1 !important;
+            }
+
+            .dosha-tabs {
+                flex-wrap: wrap;
+            }
+
+            .chat-container {
+                height: calc(100vh - 160px);
+            }
+        }
+
+        @media (min-width: 901px) {
+            .mobile-top-header {
+                display: none;
+            }
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- Mobile Top Header -->
+    <div class="mobile-top-header">
+        <a href="#" class="logo" style="text-decoration:none; display:flex; justify-content:center; width:100%;">
+            <img src="logo.jpeg" alt="AuraHealth Logo"
+                style="height: 50px; width: auto; max-width: 100%; object-fit: contain;">
+        </a>
+    </div>
 
     <!-- Sidebar -->
     <nav class="sidebar glass">
-        <div class="logo">
-            <i class="fa-solid fa-leaf"></i>
-            AuraHealth
-        </div>
+        <a href="#" class="logo"
+            style="text-decoration:none; display:flex; justify-content:center; margin-bottom: 1rem;">
+            <img src="logo.jpeg" alt="AuraHealth Logo"
+                style="height: 60px; width: auto; max-width: 100%; object-fit: contain;">
+        </a>
         <div class="nav-links">
             <button class="nav-btn active" onclick="switchMainTab('dashboard-tab', this)">
                 <i class="fa-solid fa-house"></i> Dashboard
@@ -487,17 +637,23 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
+
         <!-- 1. Dashboard Tab -->
         <section id="dashboard-tab" class="tab-section active">
             <div class="hero glass">
                 <h2>AI-Powered Health Assistant</h2>
-                <h1>Holistic Wellbeing,<br>Reimagined.</h1>
-                <p style="font-size: 1.5rem; font-weight: 500; color: var(--accent); margin-bottom: 1rem;">Ancient Wisdom, Intelligent Health</p>
-                <p>Track fitness, explore ancient ayurvedic wisdom, practice yoga, and get instant symptom insights from your personal AI.</p>
+                <h1>Holistic Wellbeing<br>Reimagined.</h1>
+                <p
+                    style="font-size: 2.8rem; font-weight: 600; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem; letter-spacing: 1px;">
+                    Ancient Wisdom Intelligent Health</p>
+                <p>Discover your Ayurvedic body type through our Dosha Quiz, receive personalized daily routines, and
+                    explore ancient wisdom with your AI wellness assistant.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <button class="btn-primary" onclick="document.querySelectorAll('.nav-btn')[1].click()">Talk to AI</button>
-                    <button class="btn-primary" style="background: transparent; border: 1px solid var(--accent); box-shadow: none;" onclick="document.querySelectorAll('.nav-btn')[2].click()">Take Dosha Quiz</button>
+                    <button class="btn-primary" onclick="document.querySelectorAll('.nav-btn')[1].click()">Talk to
+                        AI</button>
+                    <button class="btn-primary"
+                        style="background: transparent; border: 1px solid var(--accent); box-shadow: none;"
+                        onclick="document.querySelectorAll('.nav-btn')[2].click()">Take Dosha Quiz</button>
                 </div>
             </div>
         </section>
@@ -513,10 +669,12 @@
                     </div>
                 </div>
                 <div class="chat-messages" id="chatBox">
-                    <div class="message bot">Namaste! I am Aura, your holistic health and wellness guide. Ask me about your symptoms, daily routines, or ayurvedic wisdom.</div>
+                    <div class="message bot">Namaste! I am Aura, your holistic health and wellness guide. Ask me about
+                        your symptoms, daily routines, or ayurvedic wisdom.</div>
                 </div>
                 <div class="chat-input">
-                    <input type="text" id="chatInput" placeholder="Type your health queries here..." onkeypress="handleChatEnter(event)">
+                    <input type="text" id="chatInput" placeholder="Type your health queries here..."
+                        onkeypress="handleChatEnter(event)">
                     <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
@@ -542,11 +700,16 @@
             <!-- Quiz Result View -->
             <div class="quiz-wrapper glass" id="resultContainer" style="display: none;">
                 <div class="result-view">
-                    <h3 style="color: var(--primary); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;">Your Dominant Dosha is</h3>
+                    <h3
+                        style="color: var(--primary); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;">
+                        Your Dominant Dosha is</h3>
                     <h2 id="resultTitle">Vata</h2>
-                    <p id="resultDesc">Vata dosha is associated with air and space. You are naturally creative, energetic, and adaptable.</p>
+                    <p id="resultDesc">Vata dosha is associated with air and space. You are naturally creative,
+                        energetic, and adaptable.</p>
                     <button class="btn-primary" onclick="goToRoutineFromResult()">View My Personalized Routine</button>
-                    <button class="btn-primary" style="background: transparent; border: 1px solid var(--text-muted); box-shadow: none; margin-left: 1rem;" onclick="resetQuiz()">Retake Quiz</button>
+                    <button class="btn-primary"
+                        style="background: transparent; border: 1px solid var(--text-muted); box-shadow: none; margin-left: 1rem;"
+                        onclick="resetQuiz()">Retake Quiz</button>
                 </div>
             </div>
         </section>
@@ -556,7 +719,8 @@
             <div class="routine-container">
                 <div class="routine-header">
                     <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Personalized Daily Routine</h2>
-                    <p style="color: var(--text-muted)">Comprehensive lifestyle and dietary recommendations based on Ayurvedic principles.</p>
+                    <p style="color: var(--text-muted)">Comprehensive lifestyle and dietary recommendations based on
+                        Ayurvedic principles.</p>
                 </div>
 
                 <div class="dosha-tabs">
@@ -573,12 +737,14 @@
                             <div class="routine-item">
                                 <h4>Water Intake</h4>
                                 <p><strong>Amount:</strong> 2.5 - 3 Liters daily.</p>
-                                <p><strong>Method:</strong> Drink warm or room temperature water. Sip slowly throughout the day. Avoid ice-cold water as it disrupts Vata digestion.</p>
+                                <p><strong>Method:</strong> Drink warm or room temperature water. Sip slowly throughout
+                                    the day. Avoid ice-cold water as it disrupts Vata digestion.</p>
                             </div>
                             <div class="routine-item">
                                 <h4>Sleep Cycle</h4>
                                 <p><strong>Amount:</strong> 7 - 8.5 hours.</p>
-                                <p><strong>Timing:</strong> Bedtime by 10:00 PM. Wake up around 6:00 AM. Vata types need more rest to ground their active nervous systems.</p>
+                                <p><strong>Timing:</strong> Bedtime by 10:00 PM. Wake up around 6:00 AM. Vata types need
+                                    more rest to ground their active nervous systems.</p>
                             </div>
                         </div>
 
@@ -586,12 +752,15 @@
                             <h3><i class="fa-solid fa-bolt"></i> Macros & Nutrients</h3>
                             <div class="routine-item">
                                 <h4>Proteins & Vitamins</h4>
-                                <p><strong>Proteins:</strong> Moderate intake. Eggs, warm milk, mung beans, red lentils, and well-cooked poultry are excellent.</p>
-                                <p><strong>Vitamins/Minerals:</strong> Focus on B-Complex (for nervous system), Magnesium (for relaxation), and Vitamin D.</p>
+                                <p><strong>Proteins:</strong> Moderate intake. Eggs, warm milk, mung beans, red lentils,
+                                    and well-cooked poultry are excellent.</p>
+                                <p><strong>Vitamins/Minerals:</strong> Focus on B-Complex (for nervous system),
+                                    Magnesium (for relaxation), and Vitamin D.</p>
                             </div>
                             <div class="routine-item">
                                 <h4>Exercise</h4>
-                                <p>Gentle, grounding exercises. Yoga, Tai Chi, walking, and light cycling. Avoid exhaustive, high-intensity workouts.</p>
+                                <p>Gentle, grounding exercises. Yoga, Tai Chi, walking, and light cycling. Avoid
+                                    exhaustive, high-intensity workouts.</p>
                             </div>
                         </div>
 
@@ -620,6 +789,38 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="routine-card glass" style="grid-column: span 2;">
+                            <h3><i class="fa-solid fa-person-running"></i> Exercise, Yoga & Mudra</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-dumbbell" style="margin-right:6px;"></i> Exercise</h4>
+                                    <p>Gentle Yoga Flow, Tai Chi, Walking Meditation, light stretching.</p>
+                                    <a href="https://www.youtube.com/results?search_query=gentle+yoga+for+vata+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-spa" style="margin-right:6px;"></i> Yoga Poses</h4>
+                                    <p>Tadasana (Mountain), Vrikshasana (Tree), Balasana (Child's Pose), Viparita
+                                        Karani.</p>
+                                    <a href="https://www.youtube.com/results?search_query=grounding+yoga+poses+vata+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-hand" style="margin-right:6px;"></i> Mudras</h4>
+                                    <p>Vayu Mudra (calms air), Prana Mudra (boosts vitality), Gyan Mudra (focus &amp;
+                                        grounding).</p>
+                                    <a href="https://www.youtube.com/results?search_query=vayu+mudra+prana+mudra+for+vata"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -631,12 +832,14 @@
                             <div class="routine-item">
                                 <h4>Water Intake</h4>
                                 <p><strong>Amount:</strong> 3 - 3.5 Liters daily.</p>
-                                <p><strong>Method:</strong> Cool or room temperature water. Pitta types run hot and need more hydration. Coconut water is highly beneficial.</p>
+                                <p><strong>Method:</strong> Cool or room temperature water. Pitta types run hot and need
+                                    more hydration. Coconut water is highly beneficial.</p>
                             </div>
                             <div class="routine-item">
                                 <h4>Sleep Cycle</h4>
                                 <p><strong>Amount:</strong> 7 - 8 hours.</p>
-                                <p><strong>Timing:</strong> Bedtime by 10:30 PM. Wake up by 6:00 AM. Avoid staying up late working, as Pitta peak time is 10 PM - 2 AM.</p>
+                                <p><strong>Timing:</strong> Bedtime by 10:30 PM. Wake up by 6:00 AM. Avoid staying up
+                                    late working, as Pitta peak time is 10 PM - 2 AM.</p>
                             </div>
                         </div>
 
@@ -644,12 +847,14 @@
                             <h3><i class="fa-solid fa-bolt"></i> Macros & Nutrients</h3>
                             <div class="routine-item">
                                 <h4>Proteins & Vitamins</h4>
-                                <p><strong>Proteins:</strong> Moderate to high. Legumes, tofu, pumpkin seeds, dairy, and white meats.</p>
+                                <p><strong>Proteins:</strong> Moderate to high. Legumes, tofu, pumpkin seeds, dairy, and
+                                    white meats.</p>
                                 <p><strong>Vitamins/Minerals:</strong> Iron, Vitamin C (cooling), and Zinc.</p>
                             </div>
                             <div class="routine-item">
                                 <h4>Exercise</h4>
-                                <p>Moderate intensity. Swimming, winter sports, cycling, and cooling yoga. Avoid exercising during the peak heat of the day.</p>
+                                <p>Moderate intensity. Swimming, winter sports, cycling, and cooling yoga. Avoid
+                                    exercising during the peak heat of the day.</p>
                             </div>
                         </div>
 
@@ -678,6 +883,38 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="routine-card glass" style="grid-column: span 2;">
+                            <h3><i class="fa-solid fa-person-running"></i> Exercise, Yoga & Mudra</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-dumbbell" style="margin-right:6px;"></i> Exercise</h4>
+                                    <p>Swimming, Cycling, Moonlit Jogging, moderate-intensity cardio.</p>
+                                    <a href="https://www.youtube.com/results?search_query=cooling+exercise+for+pitta+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-spa" style="margin-right:6px;"></i> Yoga Poses</h4>
+                                    <p>Shitali Pranayama (cooling breath), Ardha Chandrasana, Paschimottanasana,
+                                        Shavasana.</p>
+                                    <a href="https://www.youtube.com/results?search_query=cooling+yoga+for+pitta+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-hand" style="margin-right:6px;"></i> Mudras</h4>
+                                    <p>Shankh Mudra (cools inner fire), Prithvi Mudra (stability), Apana Mudra (detox).
+                                    </p>
+                                    <a href="https://www.youtube.com/results?search_query=shankh+mudra+pitta+cooling+mudra"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -689,12 +926,14 @@
                             <div class="routine-item">
                                 <h4>Water Intake</h4>
                                 <p><strong>Amount:</strong> 2 - 2.5 Liters daily.</p>
-                                <p><strong>Method:</strong> Warm water or herbal teas. Kapha types hold onto water easily, so excessive drinking isn't needed. Ginger tea is excellent.</p>
+                                <p><strong>Method:</strong> Warm water or herbal teas. Kapha types hold onto water
+                                    easily, so excessive drinking isn't needed. Ginger tea is excellent.</p>
                             </div>
                             <div class="routine-item">
                                 <h4>Sleep Cycle</h4>
                                 <p><strong>Amount:</strong> 6 - 7 hours.</p>
-                                <p><strong>Timing:</strong> Bedtime by 11:00 PM. Wake up by 5:30 AM or 6:00 AM. Sleeping during the day strictly increases Kapha.</p>
+                                <p><strong>Timing:</strong> Bedtime by 11:00 PM. Wake up by 5:30 AM or 6:00 AM. Sleeping
+                                    during the day strictly increases Kapha.</p>
                             </div>
                         </div>
 
@@ -702,12 +941,15 @@
                             <h3><i class="fa-solid fa-bolt"></i> Macros & Nutrients</h3>
                             <div class="routine-item">
                                 <h4>Proteins & Vitamins</h4>
-                                <p><strong>Proteins:</strong> Light proteins. Lentils, black beans, quinoa, and limited lean meats. Avoid heavy dairy.</p>
-                                <p><strong>Vitamins/Minerals:</strong> Vitamin C, B-12, and Iron to boost metabolism.</p>
+                                <p><strong>Proteins:</strong> Light proteins. Lentils, black beans, quinoa, and limited
+                                    lean meats. Avoid heavy dairy.</p>
+                                <p><strong>Vitamins/Minerals:</strong> Vitamin C, B-12, and Iron to boost metabolism.
+                                </p>
                             </div>
                             <div class="routine-item">
                                 <h4>Exercise</h4>
-                                <p>Vigorous, stimulating exercise daily. Running, aerobics, active vinyasa yoga, martial arts. Kapha needs to break a sweat.</p>
+                                <p>Vigorous, stimulating exercise daily. Running, aerobics, active vinyasa yoga, martial
+                                    arts. Kapha needs to break a sweat.</p>
                             </div>
                         </div>
 
@@ -736,6 +978,38 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="routine-card glass" style="grid-column: span 2;">
+                            <h3><i class="fa-solid fa-person-running"></i> Exercise, Yoga & Mudra</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-dumbbell" style="margin-right:6px;"></i> Exercise</h4>
+                                    <p>HIIT Circuit, Power Yoga, Jump Rope, Running, Aerobics, Martial Arts.</p>
+                                    <a href="https://www.youtube.com/results?search_query=high+intensity+exercise+for+kapha+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-spa" style="margin-right:6px;"></i> Yoga Poses</h4>
+                                    <p>Surya Namaskar (Sun Salutation), Ustrasana (Camel), Dhanurasana (Bow), Kapalbhati
+                                        Pranayama.</p>
+                                    <a href="https://www.youtube.com/results?search_query=energizing+yoga+for+kapha+dosha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                                <div class="routine-item">
+                                    <h4><i class="fa-solid fa-hand" style="margin-right:6px;"></i> Mudras</h4>
+                                    <p>Surya Mudra (boosts metabolism), Linga Mudra (generates heat), Kapha Nashak
+                                        Mudra.</p>
+                                    <a href="https://www.youtube.com/results?search_query=surya+mudra+linga+mudra+for+kapha"
+                                        target="_blank"
+                                        style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 16px;background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.3);border-radius:20px;color:#ff6b6b;text-decoration:none;font-size:0.9rem;transition:all 0.3s;"><i
+                                            class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -749,7 +1023,7 @@
         function switchMainTab(tabId, btnElement) {
             // Update buttons
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
 
             // Update sections
             document.querySelectorAll('.tab-section').forEach(section => section.classList.remove('active'));
@@ -765,14 +1039,16 @@
             document.getElementById(`routine-${dosha}`).classList.add('active');
         }
 
+        let lastDominantDosha = 'vata'; // stores the quiz result
+
         function goToRoutineFromResult() {
-            let currentDosha = document.getElementById('resultTitle').innerText.toLowerCase();
-            document.querySelectorAll('.nav-btn')[3].click(); // Click routine nav
-            
-            // Click corresponding dosha tab
+            // Navigate to Daily Routine tab
+            document.querySelectorAll('.nav-btn')[3].click();
+
+            // Auto-select the correct dosha tab
             const tabs = document.querySelectorAll('.dosha-tab-btn');
             tabs.forEach(tab => {
-                if(tab.innerText.toLowerCase() === currentDosha) {
+                if (tab.innerText.toLowerCase() === lastDominantDosha) {
                     tab.click();
                 }
             });
@@ -821,89 +1097,195 @@
             }
         }
 
-        // --- Dosha Quiz Logic ---
+        // --- Dosha Quiz Logic (All 20 Original Questions) ---
         const quizData = [
             {
-                question: "How would you describe your natural physical body frame and build?",
-                options: [
-                    { text: "I have a thin, bony, or lanky build; I am either very tall or quite short.", type: "vata" },
-                    { text: "I have a medium, athletic build with good muscle tone.", type: "pitta" },
-                    { text: "I have a large, sturdy, or broad build; I gain weight easily.", type: "kapha" }
+                question: "How would you describe your natural physical body frame and build?", options: [
+                    { text: "I have a thin, bony, or lanky build; I am either very tall or quite short and find it hard to gain weight.", type: "vata" },
+                    { text: "I have a medium, athletic build with good muscle tone; it is easy for me to maintain my weight.", type: "pitta" },
+                    { text: "I have a large, sturdy, or broad build; I gain weight easily and find it quite difficult to lose it.", type: "kapha" }
                 ]
             },
             {
-                question: "Which of these best describes the natural texture and feel of your skin?",
-                options: [
-                    { text: "My skin is often dry, rough, or flaky and usually feels cool.", type: "vata" },
-                    { text: "My skin is soft, warm, and somewhat oily; prone to redness.", type: "pitta" },
-                    { text: "My skin is thick, smooth, and moist; it feels cool and soft.", type: "kapha" }
+                question: "Which of these best describes the natural texture and feel of your skin?", options: [
+                    { text: "My skin is often dry, rough, or flaky and usually feels cool to the touch.", type: "vata" },
+                    { text: "My skin is soft, warm, and somewhat oily; I am prone to redness or freckles.", type: "pitta" },
+                    { text: "My skin is thick, smooth, and moist; it feels cool and stays very soft.", type: "kapha" }
                 ]
             },
             {
-                question: "How does your appetite and digestion typically behave on a daily basis?",
-                options: [
-                    { text: "My appetite is irregular; I often forget to eat or feel bloated.", type: "vata" },
-                    { text: "I have a very strong appetite; I get very irritable if delayed.", type: "pitta" },
-                    { text: "I have a steady but slow appetite; I can easily skip meals.", type: "kapha" }
+                question: "How does your appetite and digestion typically behave on a daily basis?", options: [
+                    { text: "My appetite is irregular; I often forget to eat or feel bloated and gassy.", type: "vata" },
+                    { text: "I have a very strong appetite; I get very irritable if a meal is delayed.", type: "pitta" },
+                    { text: "I have a steady but slow appetite; I feel heavy after eating or can skip meals.", type: "kapha" }
                 ]
             },
             {
-                question: "What is your natural style of speech and how do you communicate?",
-                options: [
-                    { text: "I speak very quickly and often wander off-topic.", type: "vata" },
-                    { text: "I speak clearly and sharply; I am direct.", type: "pitta" },
-                    { text: "I speak slowly and calmly in a pleasant tone.", type: "kapha" }
+                question: "What is your natural style of speech and how do you communicate?", options: [
+                    { text: "I speak very quickly and often wander off-topic because my mind moves fast.", type: "vata" },
+                    { text: "I speak clearly and sharply; I am direct and try to convince others.", type: "pitta" },
+                    { text: "I speak slowly and calmly in a pleasant tone; I don\u2019t like to rush.", type: "kapha" }
                 ]
             },
             {
-                question: "How would you describe your typical sleep pattern and quality of rest?",
-                options: [
-                    { text: "I am a light sleeper; I wake up easily and struggle with racing thoughts.", type: "vata" },
-                    { text: "I am a moderate sleeper; I sleep soundly and feel energetic.", type: "pitta" },
-                    { text: "I am a very deep sleeper; I hate being woken up and feel groggy.", type: "kapha" }
+                question: "How would you describe your typical sleep pattern and quality of rest?", options: [
+                    { text: "I am a light sleeper; I wake up at noises and struggle with racing thoughts.", type: "vata" },
+                    { text: "I am a moderate sleeper; I sleep soundly for 6-7 hours and feel energetic.", type: "pitta" },
+                    { text: "I am a very deep sleeper; I hate being woken up and often feel groggy.", type: "kapha" }
                 ]
             },
             {
-                question: "How do you typically react when you are placed under a lot of stress?",
-                options: [
+                question: "How do you typically react when you are placed under a lot of stress?", options: [
                     { text: "I immediately start to feel anxious, worried, or fearful.", type: "vata" },
-                    { text: "I become impatient, frustrated, or angry.", type: "pitta" },
+                    { text: "I become impatient, frustrated, or angry with the situation.", type: "pitta" },
                     { text: "I tend to remain very calm and may become quiet or stubborn.", type: "kapha" }
                 ]
             },
             {
-                question: "When learning something new, how does your memory and focus work?",
-                options: [
-                    { text: "I grasp new ideas fast, but forget them just as quickly.", type: "vata" },
-                    { text: "I learn quickly and have a very sharp, organized memory.", type: "pitta" },
-                    { text: "I take a long time to understand, but remember forever.", type: "kapha" }
+                question: "When learning something new, how does your memory and focus work?", options: [
+                    { text: "I grasp new ideas fast, but I also tend to forget them just as quickly.", type: "vata" },
+                    { text: "I learn quickly and have a very sharp, organized memory for details.", type: "pitta" },
+                    { text: "I take a long time to understand, but once I do, I remember forever.", type: "kapha" }
                 ]
             },
             {
-                question: "How does your body usually respond to different weather and climates?",
-                options: [
-                    { text: "I love warm weather because I feel cold easily.", type: "vata" },
-                    { text: "I prefer cool environments because I overheat quickly.", type: "pitta" },
-                    { text: "I feel best in warm, dry climates; damp weather makes me heavy.", type: "kapha" }
+                question: "How does your body usually respond to different weather and climates?", options: [
+                    { text: "I love warm weather because I feel cold easily and dislike wind.", type: "vata" },
+                    { text: "I prefer cool environments because I overheat quickly and find heat draining.", type: "pitta" },
+                    { text: "I feel best in warm, dry climates because damp weather makes me feel heavy.", type: "kapha" }
                 ]
             },
             {
-                question: "What is your typical energy level and physical stamina like?",
-                options: [
-                    { text: "My energy comes in short bursts; I tire out quickly.", type: "vata" },
-                    { text: "I have a moderate, steady energy level and strong drive.", type: "pitta" },
+                question: "What is your typical energy level and physical stamina like?", options: [
+                    { text: "My energy comes in short bursts; I start excited but tire out quickly.", type: "vata" },
+                    { text: "I have a moderate, steady energy level and a strong drive to push myself.", type: "pitta" },
                     { text: "I have very high, long-lasting stamina once I get moving.", type: "kapha" }
                 ]
             },
             {
-                question: "How would you describe the natural texture and appearance of your hair?",
-                options: [
-                    { text: "My hair is naturally dry, thin, and prone to becoming frizzy.", type: "vata" },
-                    { text: "My hair is fine, soft, and straight; might turn grey early.", type: "pitta" },
-                    { text: "I have very thick, strong, and oily hair that looks shiny.", type: "kapha" }
+                question: "How would you describe the natural texture and appearance of your hair?", options: [
+                    { text: "My hair is naturally dry, thin, and prone to becoming frizzy or tangled.", type: "vata" },
+                    { text: "My hair is fine, soft, and straight; it might turn grey earlier than most.", type: "pitta" },
+                    { text: "I have very thick, strong, and oily hair that looks shiny and healthy.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How do you generally handle your personal finances and spending habits?", options: [
+                    { text: "I tend to spend money impulsively and find it hard to save consistently.", type: "vata" },
+                    { text: "I spend on quality items but I am very organized with my budget.", type: "pitta" },
+                    { text: "I am very good at saving and prefer to accumulate wealth.", type: "kapha" }
+                ]
+            },
+            {
+                question: "Which of these best describes your typical walking pace?", options: [
+                    { text: "I walk very quickly and often seem to be in a rush.", type: "vata" },
+                    { text: "I walk with a purposeful, steady, and determined stride.", type: "pitta" },
+                    { text: "I walk slowly and gracefully, taking my time to enjoy the pace.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How would you describe your joints and physical flexibility?", options: [
+                    { text: "My joints are small and sometimes crack; I am not naturally flexible.", type: "vata" },
+                    { text: "My joints are medium-sized and quite flexible; athletic range of motion.", type: "pitta" },
+                    { text: "My joints are large and well-padded; I am sturdy but move heavily.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How do you usually make important decisions in your life?", options: [
+                    { text: "I am often hesitant and change my mind many times.", type: "vata" },
+                    { text: "I am very logical and decisive; once I choose, I stick to it.", type: "pitta" },
+                    { text: "I take a long time to decide because I like to move slowly.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How much do you typically perspire (sweat) during activity or heat?", options: [
+                    { text: "I rarely sweat, even in heat, and my skin remains quite dry.", type: "vata" },
+                    { text: "I sweat quite a lot and very easily; it often has a strong odor.", type: "pitta" },
+                    { text: "I sweat a moderate amount and it usually has a mild scent.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How would you describe the appearance and sensation of your eyes?", options: [
+                    { text: "My eyes are small, feel dry often, and are very active or darting.", type: "vata" },
+                    { text: "My eyes are medium-sized and sharp; sensitive to bright light.", type: "pitta" },
+                    { text: "My eyes are large, beautiful, and moist with thick eyelashes.", type: "kapha" }
+                ]
+            },
+            {
+                question: "What kind of dreams do you typically have when you sleep?", options: [
+                    { text: "I often have vivid, fearful dreams involving flying or running.", type: "vata" },
+                    { text: "I have intense dreams involving colors, fire, or problem-solving.", type: "pitta" },
+                    { text: "I have calm, pleasant dreams involving water or landscapes.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How do your emotions typically manifest in your daily life?", options: [
+                    { text: "My emotions change quickly; I go from excited to worried fast.", type: "vata" },
+                    { text: "I am passionate and driven, but can be quite irritable.", type: "pitta" },
+                    { text: "I am very steady, loyal, and calm; it takes a lot to upset me.", type: "kapha" }
+                ]
+            },
+            {
+                question: "How would you describe your physical pulse or heartbeat at rest?", options: [
+                    { text: "My pulse feels fast, thin, and sometimes irregular\u2014like a thread.", type: "vata" },
+                    { text: "My pulse feels strong, steady, and moderate\u2014like a rhythmic thump.", type: "pitta" },
+                    { text: "My pulse feels slow, soft, and very consistent\u2014like a wave.", type: "kapha" }
+                ]
+            },
+            {
+                question: "What is your general approach to daily routines and habits?", options: [
+                    { text: "I struggle to keep a routine; I like variety and change every day.", type: "vata" },
+                    { text: "I love an organized schedule and I am very disciplined about it.", type: "pitta" },
+                    { text: "I enjoy a slow, relaxed routine and I am resistant to big changes.", type: "kapha" }
                 ]
             }
         ];
+
+        // --- Original Dosha Results with Tips, Dos, Red Flags ---
+        const doshaResults = {
+            vata: {
+                name: 'Vata', color: '#06b6d4', icon: 'fa-wind', emoji: '\uD83C\uDF2A\uFE0F',
+                element: 'The Air Element', focus: 'Grounding, Warmth, and Stability',
+                desc: 'You are creative, energetic, and quick-thinking. Vata types benefit from warm, grounding foods and calming activities like meditation.',
+                tips: ['Eat warm, cooked foods', 'Maintain a regular routine', 'Practice grounding yoga (Tadasana, Vrikshasana)', 'Use Ashwagandha and sesame oil'],
+                dos: [
+                    { title: 'Routine', desc: 'Eat, sleep, and wake at the same time every day to stabilize your energy.' },
+                    { title: 'Moisture', desc: 'Perform a 5-minute self-massage with warm sesame oil before your shower.' }
+                ],
+                donts: [
+                    { title: 'Cold Stimuli', desc: 'Avoid ice-cold drinks, frozen foods, and cold drafts.' },
+                    { title: 'Dryness', desc: 'Avoid "crunchy" dry snacks like popcorn, crackers, and raw salads.' }
+                ]
+            },
+            pitta: {
+                name: 'Pitta', color: '#ef4444', icon: 'fa-fire', emoji: '\uD83D\uDD25',
+                element: 'The Fire Element', focus: 'Cooling, Calm, and Moderation',
+                desc: 'You are ambitious, intelligent, and focused. Pitta types benefit from cooling foods and activities that promote balance and patience.',
+                tips: ['Eat cooling foods (cucumber, mint)', 'Avoid excessive heat and spicy food', 'Practice calming pranayama', 'Use Brahmi and Amla supplements'],
+                dos: [
+                    { title: 'Cool Down', desc: 'Exercise in the early morning or evening; try swimming or moonlit walks.' },
+                    { title: 'Patience', desc: 'Practice mindfulness or meditation to release internal heat and frustration.' }
+                ],
+                donts: [
+                    { title: 'Heating Agents', desc: 'Avoid spicy chilies, hot peppers, and excessive garlic/onions.' },
+                    { title: 'Fermented Items', desc: 'Avoid vinegar, pickles, alcohol, and fermented soy.' }
+                ]
+            },
+            kapha: {
+                name: 'Kapha', color: '#10b981', icon: 'fa-mountain', emoji: '\uD83C\uDF3F',
+                element: 'The Earth Element', focus: 'Stimulation, Lightness, and Movement',
+                desc: 'You are strong, loyal, and nurturing. Kapha types benefit from stimulating activities, lighter foods, and invigorating exercise.',
+                tips: ['Eat light, warm, spicy foods', 'Exercise vigorously and regularly', 'Avoid daytime napping', 'Use Triphala and Tulsi tea'],
+                dos: [
+                    { title: 'Early Rise', desc: 'Wake up before 6:00 AM to prevent grogginess and morning congestion.' },
+                    { title: 'Activity', desc: 'Engage in vigorous exercise daily that makes you break a sweat.' }
+                ],
+                donts: [
+                    { title: 'Heaviness', desc: 'Avoid heavy dairy products like cheese, cold milk, and ice cream.' },
+                    { title: 'Stagnation', desc: 'Avoid daytime napping and sitting for long periods without movement.' }
+                ]
+            }
+        };
 
         let currentQuestion = 0;
         let scores = { vata: 0, pitta: 0, kapha: 0 };
@@ -918,12 +1300,22 @@
                 const card = document.createElement('div');
                 card.className = `question-card ${index === 0 ? 'active' : ''}`;
                 card.id = `q-${index}`;
-                
-                let optionsHtml = q.options.map(opt => 
+
+                let optionsHtml = q.options.map(opt =>
                     `<button class="option-btn" onclick="selectOption('${opt.type}')">
                         ${opt.text} <i class="fa-solid fa-arrow-right" style="opacity: 0.5;"></i>
                     </button>`
                 ).join('');
+
+                // Add "Other" write-in option
+                optionsHtml += `
+                    <div class="option-btn" style="flex-direction:column; align-items:stretch; gap:8px; cursor:default;">
+                        <span style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-pen" style="opacity:0.5;"></i> Other (write your own):</span>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" id="other-input-${index}" placeholder="Type your answer..." style="flex:1; background:rgba(0,0,0,0.2); border:1px solid var(--glass-border); color:white; padding:0.6rem 1rem; border-radius:12px; outline:none; font-size:0.95rem;">
+                            <button onclick="submitOther(${index})" style="background:var(--primary); color:white; border:none; padding:0.6rem 1.2rem; border-radius:12px; cursor:pointer; font-size:0.9rem;">Submit</button>
+                        </div>
+                    </div>`;
 
                 card.innerHTML = `
                     <h3>Question ${index + 1} of ${quizData.length}</h3>
@@ -935,25 +1327,34 @@
                 container.appendChild(card);
             });
             updateProgress();
-            
+
             document.getElementById('quizContainer').style.display = 'block';
             document.getElementById('resultContainer').style.display = 'none';
         }
 
         function selectOption(type) {
             scores[type]++;
-            
-            // Hide current
             document.getElementById(`q-${currentQuestion}`).classList.remove('active');
-            
             currentQuestion++;
-            
+
             if (currentQuestion < quizData.length) {
-                // Show next
                 document.getElementById(`q-${currentQuestion}`).classList.add('active');
                 updateProgress();
             } else {
-                // Show results
+                showResults();
+            }
+        }
+
+        function submitOther(qIndex) {
+            const input = document.getElementById(`other-input-${qIndex}`);
+            if (!input.value.trim()) { input.focus(); return; }
+            // "Other" doesn't score any dosha, just advances
+            document.getElementById(`q-${currentQuestion}`).classList.remove('active');
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                document.getElementById(`q-${currentQuestion}`).classList.add('active');
+                updateProgress();
+            } else {
                 showResults();
             }
         }
@@ -967,23 +1368,36 @@
             document.getElementById('quizContainer').style.display = 'none';
             document.getElementById('resultContainer').style.display = 'block';
 
-            // Find dominant dosha
             let dominant = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            
-            const titles = {
-                vata: "Vata",
-                pitta: "Pitta",
-                kapha: "Kapha"
-            };
-            
-            const descriptions = {
-                vata: "<strong>The Air Element • Focus: Grounding, Warmth, and Stability</strong><br><br>You are creative, energetic, and quick-thinking. Vata types benefit from warm, grounding foods and calming activities like meditation.",
-                pitta: "<strong>The Fire Element • Focus: Cooling, Calm, and Moderation</strong><br><br>You are ambitious, intelligent, and focused. Pitta types benefit from cooling foods and activities that promote balance and patience.",
-                kapha: "<strong>The Earth Element • Focus: Stimulation, Lightness, and Movement</strong><br><br>You are strong, loyal, and nurturing. Kapha types benefit from stimulating activities, lighter foods, and invigorating exercise."
-            };
+            lastDominantDosha = dominant; // store for routine navigation
+            const r = doshaResults[dominant];
 
-            document.getElementById('resultTitle').innerText = titles[dominant];
-            document.getElementById('resultDesc').innerHTML = descriptions[dominant];
+            document.getElementById('resultTitle').innerHTML = `${r.emoji} You are <span style="color:${r.color}">${r.name}</span> Dominant!`;
+            document.getElementById('resultDesc').innerHTML = `
+                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">${r.element} &bull; Focus: ${r.focus}</p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">${r.desc}</p>
+
+                <div style="text-align:left; margin-bottom: 2rem;">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;"><i class="fa-solid fa-lightbulb"></i> Personalized Tips</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        ${r.tips.map(t => `<li style="display:flex; align-items:center; gap:10px; margin-bottom:10px; color: var(--text-muted);"><i class="fa-solid fa-check" style="color:#4ade80;"></i> ${t}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div style="text-align:left; margin-bottom: 2rem;">
+                    <h4 style="color: #4ade80; margin-bottom: 1rem;"><i class="fa-solid fa-circle-check" style="color:#4ade80;"></i> Daily Habits (To Do)</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        ${r.dos.map(d => `<li style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; color: var(--text-muted);"><i class="fa-solid fa-check" style="color:#4ade80; margin-top:4px;"></i> <div><strong>${d.title}:</strong> ${d.desc}</div></li>`).join('')}
+                    </ul>
+                </div>
+
+                <div style="text-align:left; margin-bottom: 2rem;">
+                    <h4 style="color: #f87171; margin-bottom: 1rem;"><i class="fa-solid fa-triangle-exclamation" style="color:#f87171;"></i> Red Flags (To Avoid)</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        ${r.donts.map(d => `<li style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; color: var(--text-muted);"><i class="fa-solid fa-xmark" style="color:#f87171; margin-top:4px;"></i> <div><strong>${d.title}:</strong> ${d.desc}</div></li>`).join('')}
+                    </ul>
+                </div>
+            `;
         }
 
         function resetQuiz() {
@@ -995,4 +1409,5 @@
 
     </script>
 </body>
+
 </html>
