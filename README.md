@@ -4,20 +4,15 @@ Holistic health platform. Ayurvedic + modern solutions, fitness tracking, yoga/m
 
 ## ✨ Features
 
-**🌿 Ayurveda & Modern**  
-Dosha quiz, herb profiles, modern health tips
+**🌿 Dosha Quiz**  
+Discover your ayurvedic constitution. Get personalized herb + diet recommendations
 
-**🏃 Fitness Tracker**  
-Log workouts (type, duration, calories, steps). View today stats + full history
-
-**🧘 Yoga & Mudra**  
-Step-by-step poses, mudras, breathing exercises. Modal detail views
+**📅 Daily Routine**  
+Custom wellness schedules based on dosha. do's and don'ts, personalised tips with youtube links
 
 **🤖 AI Chatbot**  
-Symptom insights, app navigation commands, curated YouTube health videos
+Symptom insights, navigation commands, curated YouTube health videos
 
-**📋 Medical History**  
-Store, filter, manage health records (diagnoses, prescriptions, labs). Local only
 
 ## 🚀 Get Started
 
