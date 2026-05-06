@@ -43,10 +43,8 @@ AuraHealth/
 ├── js/
 │   ├── app.js              # Core: nav, utils
 │   ├── ayurveda.js         # Dosha quiz, herbs, tips
-│   ├── fitness.js          # Workout log + stats
 │   ├── yoga.js             # Poses, mudras, breathing
 │   ├── chatbot.js          # AI: symptoms, YouTube, nav
-│   └── medical.js          # Medical history CRUD
 └── README.md
 ```
 
@@ -65,8 +63,6 @@ All data in browser localStorage. Nothing leave device.
 
 ## 🔮 Roadmap
 
-- Wearables integration (heart rate, steps sync)
 - Personalised daily tips
 - Community forums
-- Expert partnerships + teleconsult
 - PWA support
